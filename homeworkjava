@@ -1,0 +1,60 @@
+1. public static void main(String[] args) {
+        int[] array = new int[8];
+        Random random = new Random();
+        for (int i=0;i<array.length;i++){
+            array[i] = random.nextInt(1,50);
+        }
+        for (int num:array){
+            System.out.print(num+" ");
+        }
+        for (int i=1;i<array.length;i+=2){
+            array[i] = 0;
+        }
+        System.out.println();
+        for (int num:array){
+            System.out.print(num+" ");
+        }
+
+    }
+}
+
+Rezultat
+20 3 36 27 32 25 5 14 
+20 0 36 0 32 0 5 0 
+
+
+
+2.import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Random;
+
+public class Homework8_2 {
+    public static void main(String[] args) {
+        int[] numbers = new int [5];
+        Random random= new Random();
+        for (int i =0;i < numbers.length;i++){
+            numbers[i]=random.nextInt(10,100);
+
+        }
+        System.out.println(Arrays.toString(numbers));
+
+        for (int i=0;i< numbers.length-1;i++){
+            if (numbers[i] <numbers[i+1]){
+                System.out.println("The array is not a strictly increasing sequence.");
+                break;
+            }else{
+                System.out.println("The array is  a strictly increasing sequence.");
+
+            }
+
+        }
+
+    }
+
+
+}
+
+rezultat
+[75, 84, 33, 38, 34]
+The array is not a strictly increasing sequence.
+
