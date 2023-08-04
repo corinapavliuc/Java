@@ -1,0 +1,30 @@
+public class Homework9_1 {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("Enter the length of the array: ");
+        int length =scanner.nextInt();
+        int[] numbers=new int[length];
+        for (int i =0;i <length;i++){
+            System.out.print(i+ "  index in Arrays: ");
+           numbers[i]=scanner.nextInt();
+        }
+        Arrays.sort(numbers);
+        for (int i=0; i<length-1;i++){
+            if(numbers[i]!= numbers[i+1] -1) {
+                System.out.println("Lost number: " + (numbers[i]+1));
+
+            }
+        }
+    }
+}
+
+Rezultat
+Enter the length of the array: 5
+0  index in Arrays: 6
+1  index in Arrays: 1
+2  index in Arrays: 2
+3  index in Arrays: 3
+4  index in Arrays: 7
+Lost number: 4
+
+Process finished with exit code 0
