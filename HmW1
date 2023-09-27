@@ -1,0 +1,33 @@
+java
+import java.util.Scanner;
+
+public class BankWithdrawal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Введите сумму на счету: ");
+        int n = scanner.nextInt();
+        
+        int days = 0;
+        
+        while (n > 0) {
+            int amount = findMaxDivisor(n);
+            n -= amount;
+            days++;
+            
+            System.out.println("Снято " + amount + ", осталось = " + n);
+        }
+        
+        System.out.println("Понадобится " + days + " дней");
+    }
+    
+    public static int findMaxDivisor(int n) {
+        for (int i = n - 1; i >= 1; i--) {
+            if (n % i == 0) {
+                return i;
+            }
+        }
+        
+        return 1;
+    }
+}
