@@ -1,1 +1,181 @@
+ 1 уровень сложности: Задание №1
+    Напишите программу, которая меняет местами элементы одномерного массива из String в обратном порядке.
+Не используйте дополнительный массив для хранения результатов.
 
+
+java
+import java.util.Scanner;
+import java.util.Random;
+
+public class ArrayTasks {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        // Задача 1
+        int n = 0;
+        while (n <= 3) {
+            System.out.print("Введите размер массива (натуральное число больше 3): ");
+            n = scanner.nextInt();
+        }
+        
+        int[] array1 = generateRandomArray(n);
+        System.out.println("Исходный массив:");
+        printArray(array1);
+        
+        int[] array2 = filterEvenElements(array1);
+        System.out.println("Массив из чётных элементов:");
+        printArray(array2);
+        
+        // Задача 2
+        int[] array3 = generateRandomArray(12, -15, 15);
+        System.out.println("Массив:");
+        printArray(array3);
+        
+        int maxIndex = findLastMaxIndex(array3);
+        System.out.println("Максимальный элемент (" + array3[maxIndex] + ") находится по индексу " + maxIndex);
+        
+        // Задача 3
+        int[] array4 = generateRandomArray(8, 1, 10);
+        System.out.println("Исходный массив:");
+        printArray(array4);
+        
+        replaceOddElements(array4);
+        System.out.println("Массив после замены нечётных элементов на ноль:");
+        printArray(array4);
+        
+        // Задача 4
+        int[] array5 = generateRandomArray(5, 0, 5);
+        int[] array6 = generateRandomArray(5, 0, 5);
+        
+        System.out.println("Первый массив:");
+        printArray(array5);
+        
+        System.out.println("Второй массив:");
+        printArray(array6);
+        
+        double average1 = calculateAverage(array5);
+        double average2 = calculateAverage(array6);
+        
+        if (average1 > average2) {
+            System.out.println("Среднее арифметическое первого массива (" + average1 + ") больше");
+        } else if (average1 < average2) {
+            System.out.println("Среднее арифметическое второго массива (" + average2 + ") больше");
+        } else {
+            System.out.println("Средние арифметические обоих массивов равны");
+        }
+        
+        // Задача 5
+        System.out.print("Введите строку: ");
+        String input = scanner.nextLine();
+        
+        int wordCount = countWords(input);
+        System.out.println("Вы ввели " + wordCount + " слов(а)");
+        
+        // Задача 6
+        int[] array7 = generateRandomArray(5, 10, 99);
+        System.out.println("Массив:");
+        printArray(array7);
+        
+        boolean isIncreasing = isStrictlyIncreasing(array7);
+        
+        if (isIncreasing) {
+            System.out.println("Массив является строго возрастающей последовательностью");
+        } else {
+            System.out.println("Массив не является строго возрастающей последовательностью");
+        }
+    }
+    
+    public static int[] generateRandomArray(int size) {
+        Random random = new Random();
+        int[] array = new int[size];
+        
+        for (int i = 0; i < size; i++) {
+            array[i] = random.nextInt();
+        }
+        
+        return array;
+    }
+    
+    public static int[] generateRandomArray(int size, int min, int max) {
+        Random random = new Random();
+        int[] array = new int[size];
+        
+        for (int i = 0; i < size; i++) {
+            array[i] = random.nextInt(max - min + 1) + min;
+        }
+        
+        return array;
+    }
+    
+    public static void printArray(int[] array) {
+        for (int element : array) {
+            System.out.print(element + " ");
+        }
+        System.out.println();
+    }
+    
+    public static int[] filterEvenElements(int[] array) {
+        int count = 0;
+        
+        for (int element : array) {
+            if (element % 2 == 0) {
+                count++;
+            }
+        }
+        
+        int[] result = new int[count];
+        int index = 0;
+        
+        for (int element : array) {
+            if (element % 2 == 0) {
+                result[index] = element;
+                index++;
+            }
+        }
+        
+        return result;
+    }
+    
+    public static int findLastMaxIndex(int[] array) {
+        int maxIndex = 0;
+        
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] >= array[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        
+        return maxIndex;
+    }
+    
+    public static void replaceOddElements(int[] array) {
+        for (int i = 1; i < array.length; i += 2) {
+            array[i] = 0;
+        }
+    }
+    
+    public static double calculateAverage(int[] array) {
+        int sum = 0;
+        
+        for (int element : array) {
+            sum += element;
+        }
+        
+        return (double) sum / array.length;
+    }
+    
+    public static int countWords(String input) {
+        String[] words = input.split("\\s+");
+        return words.length;
+    }
+    
+    public static boolean isStrictlyIncreasing(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] <= array[i - 1]) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
